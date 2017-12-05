@@ -1,0 +1,40 @@
+#!/usr/bin/php
+<?php
+
+// Example:
+// ./cli hello
+
+array_shift($argv); // Discard the filename
+$pathinfo = array_shift($argv);
+
+date_default_timezone_set('Asia/Novosibirsk'); // FIXME
+
+require __DIR__ . '/vendor/autoload.php';
+
+$config = require __DIR__ . '/src/settings'.(file_exists(__DIR__ . '/src/settings.local.php')?'.local':'').'.php';
+
+$config['environment'] = \Slim\Http\Environment::mock([
+  'REQUEST_URI' => "/".$pathinfo,
+]);
+
+$config['notFoundHandler'] = function ($c) {
+  return function ($request, $response) use($c) {
+    $routes = implode("\n", array_map(function($route) {
+      return "\033[0;32m".ltrim($route->getPattern(), '/')."\t\t\t\t\033[0;37m".$route->getName();
+    }, $c['router']->getRoutes()));
+    return $c['response']->write("\033[0;33mAvailable tasks:\n\n".$routes."\n\033[0m");
+  };
+};
+
+$app = new \Slim\App($config);
+
+// Set up dependencies
+require __DIR__ . '/src/dependencies.php';
+
+// Register middleware
+require __DIR__ . '/src/middleware.php';
+
+// Register CLI tasks
+require __DIR__ . '/src/tasks.php';
+
+$app->run();

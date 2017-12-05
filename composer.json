@@ -1,0 +1,25 @@
+{
+    "name": "myfonero/wallet",
+    "type": "project",
+    "homepage": "http://myfonero.mymsg.ru",
+    "authors": [
+        {
+            "name": "MyFonero",
+            "email": "myfonero@mymsg.ru"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/php-view": "^2.2",
+        "swiftmailer/swiftmailer": "5.4.8",
+        "pda/pheanstalk": "^3.1"
+    },
+    "scripts": {
+        "cli": "./cli"
+    },
+    "autoload": {
+        "psr-4": {
+            "MyFonero\\": "src/"
+        }
+    }
+}
