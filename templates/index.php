@@ -16,7 +16,7 @@
 <div id="app">
 <v-app>
 
-  <v-toolbar>
+  <v-toolbar color="green">
     <v-toolbar-title>MyFonero Wallet</v-toolbar-title>
   </v-toolbar>
 
@@ -93,9 +93,9 @@
 
 	</v-content>
 
-	<v-footer class="pa-3">
+	<v-footer class="pa-3" color="green">
 		<v-spacer></v-spacer>
-		<div>© 2017 <a href="http://myfonero.mymsg.ru">myfonero.mymsg.ru</a></div>
+		<div>© 2017 <v-btn flat color="white" href="http://myfonero.mymsg.ru">myfonero.mymsg.ru</v-btn></div>
 	</v-footer>
 
 </v-app>
