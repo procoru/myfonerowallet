@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MyFonero Unofficial Wallet</title>
+  <title>MyFonero Wallet</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link href="http://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
@@ -15,6 +15,10 @@
 
 <div id="app">
 <v-app>
+
+  <v-toolbar>
+    <v-toolbar-title>MyFonero Wallet</v-toolbar-title>
+  </v-toolbar>
 
 	<v-content>
 	<v-container v-if="!address">
@@ -53,7 +57,7 @@
 
 	  <v-card color="blue-grey darken-2" class="white--text">
             <v-card-title primary-title>
-              <div class="headline">MyFonero Wallet Balance: {{ balance }} / {{ unlocked_balance }}</div>
+              <div class="headline">Balance: {{ balance }} / Unlocked balance: {{ unlocked_balance }}</div>
               <div>Address: {{ address }}</div>
 		<div style="width:100%">
  <v-text-field
@@ -69,7 +73,7 @@
 		</div>
             </v-card-title>
             <v-card-actions>
-              <v-btn flat dark @click="send">Send</v-btn>
+              <v-btn color="primary" @click="send">Send</v-btn>
             </v-card-actions>
           </v-card>
 
@@ -84,10 +88,16 @@
 			<div>tx_key: {{ tx_key }}</div>
 		</v-card-title>
 	</v-card>
-	
+
 	<v-container>
 
 	</v-content>
+
+	<v-footer class="pa-3">
+		<v-spacer></v-spacer>
+		<div>© 2017 <a href="http://myfonero.mymsg.ru">myfonero.mymsg.ru</a></div>
+	</v-footer>
+
 </v-app>
 </div>
 
